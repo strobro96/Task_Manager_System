@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Admin panel</title>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+
+    <!-- Javascript -->
+    <script src="static/taskboard.js"></script>
+    <title>Таскборд</title>
+
+</head>
+<body>
+
+<!-- Navbar -->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand">Task Manager</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse show" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <div sec:authorize="hasRole('ROLE_ADMIN')"><a class="nav-link active" href="/admin">Панель
+                    управления</a></div>
+                <a class="nav-link" href="/taskboard">Таскборд</a>
+                <a class="nav-link" href="/user">Профиль</a>
+                <a class="nav-link" href="/swagger-ui.html">Swagger UI</a>
+            </div>
+        </div>
+    </div>
+    <a class="nav-link" href="/logout">Выйти</a>
+</nav>
+<br>
+
+<!-- Taskboard -->
+<div class="col-auto">
+    <div class="container-fluid bg-light">
+        <div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Заголовок</th>
+                    <th>Описание</th>
+                    <th>Статус</th>
+                    <th>Приоритет</th>
+                    <th>Автор</th>
+                    <th>Исполнитель</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody id="tasks-tbody">
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+
+    <!-- Modal window -->
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+
+                        <div class="form-group">
+                            <label for="id" class="col-form-label">ID:</label>
+                            <input type="text" class="form-control" id="id" disabled>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="header" class="col-form-label">Заголовок:</label>
+                            <input type="text" class="form-control" id="header">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description" class="col-form-label">Описание:</label>
+                            <input type="text" class="form-control" id="description">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="statusEnum" class="col-form-label">Статус:</label>
+                            <select multiple class="form-control" id="statusEnum"></select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="priorityEnum" class="col-form-label">Приоритет:</label>
+                            <select multiple class="form-control" id="priorityEnum"></select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="employee" class="col-form-label">Исполнитель:</label>
+                            <select multiple class="form-control" id="employee"></select>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                    <button type="button" id="submit-action"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-primary" onclick="openModalHandler(action.create)">Добавить задачу</button>
+
+
+</div>
+</body>
+
+
+</html>
