@@ -8,30 +8,23 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.em.taskmanagersystem.model.Priority;
-import ru.em.taskmanagersystem.model.Status;
+import ru.em.taskmanagersystem.common.PriorityEnum;
+import ru.em.taskmanagersystem.common.StatusEnum;
 import ru.em.taskmanagersystem.model.User;
-import ru.em.taskmanagersystem.service.PriorityService.PriorityService;
-import ru.em.taskmanagersystem.service.StatusService.StatusService;
 import ru.em.taskmanagersystem.service.UserService.UserService;
 
-import java.util.List;
+import java.util.*;
 
 @Tag(name = "Контроллер для списков", description = "Получение списков пользователей, статусов, приоритетов")
 @RestController
 @RequestMapping("api/enums/")
 public class EnumsRestController {
 
-    private final PriorityService priorityService;
-
-    private final StatusService statusService;
 
     private final UserService userService;
 
     @Autowired
-    public EnumsRestController(PriorityService priorityService, StatusService statusService, UserService userService) {
-        this.statusService = statusService;
-        this.priorityService = priorityService;
+    public EnumsRestController(UserService userService) {
         this.userService = userService;
     }
 
@@ -40,8 +33,8 @@ public class EnumsRestController {
             description = "Используется в коде JavaScript"
     )
     @GetMapping("priorities")
-    public ResponseEntity<List<Priority>> getAllTPriorities() {
-        List<Priority> priorities = priorityService.getAllPriorities();
+    public ResponseEntity<List<Map<String, Object>>> getAllPriorities() {
+        List<Map<String, Object>> priorities = PriorityEnum.getAllPriorities();
         return new ResponseEntity<>(priorities, HttpStatus.OK);
     }
 
@@ -50,8 +43,8 @@ public class EnumsRestController {
             description = "Используется в коде JavaScript"
     )
     @GetMapping("statuses")
-    public ResponseEntity<List<Status>> getAllStatuses() {
-        List<Status> statuses = statusService.getAllStatuses();
+    public ResponseEntity<List<Map<String, Object>>> getAllStatuses() {
+        List<Map<String, Object>> statuses = StatusEnum.getAllStatuses();
         return new ResponseEntity<>(statuses, HttpStatus.OK);
     }
 

@@ -19,40 +19,12 @@ VALUES
     ('2', '1'),
     ('3', '1');
 
--- Заполнение таблицы priority тестовыми данными
-INSERT INTO `kata`.`priority` (`id`, `value`)
-VALUES
-    ('1', 'Низкий'),
-    ('2', 'Средний'),
-    ('3', 'Высокий');
-
--- Заполнение таблицы status тестовыми данными
-INSERT INTO `kata`.`status` (`id`, `value`)
-VALUES
-    ('1', 'В ожидании'),
-    ('2', 'В процессе'),
-    ('3', 'Завершена');
-
 -- Заполнение таблицы task тестовыми данными
-INSERT INTO `kata`.`task` (`id`, `description`, `header`)
+INSERT INTO `kata`.`task` (`id`, `description`, `header`, `priority`, `status`)
 VALUES
-    ('1', 'Покоряем космос', 'Полететь на Марс'),
-    ('2', 'Новый год - новый IPhone', 'Изобрести IPhone'),
-    ('3', 'Для Роскомнадзора', 'Передать ключи шифрования');
-
--- Заполнение таблицы tasks_priorities тестовыми данными
-INSERT INTO `kata`.`tasks_priorities` (`priority_id`, `task_id`)
-VALUES
-    ('1', '1'),
-    ('2', '2'),
-    ('3', '3');
-
--- Заполнение таблицы tasks_statuses тестовыми данными
-INSERT INTO `kata`.`tasks_statuses` (`status_id`, `task_id`)
-VALUES
-    ('1', '1'),
-    ('2', '2'),
-    ('3', '3');
+    ('1', 'Покоряем Космос', 'Полететь на Марс', 'LOW', 'WAITING'),
+    ('2', 'Новый год - новый IPhone', 'Изобрести IPhone', 'MEDIUM', 'IN_PROGRESS'),
+    ('3', 'Для Роскомнадзора', 'Передать ключи шифрования', 'HIGH', 'COMPLETE');
 
 -- Заполнение таблицы tasks_authors тестовыми данными
 INSERT INTO `kata`.`tasks_authors` (`user_id`, `task_id`)

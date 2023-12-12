@@ -1,8 +1,8 @@
 package ru.em.taskmanagersystem.service.TaskService;
 
 
+import ru.em.taskmanagersystem.common.StatusEnum;
 import ru.em.taskmanagersystem.model.Comment;
-import ru.em.taskmanagersystem.model.Status;
 import ru.em.taskmanagersystem.model.Task;
 
 import java.util.List;
@@ -27,6 +27,6 @@ public interface TaskService {
 
     List<Task> findTasksByEmployeeId(Long employeeId);
 
-    void updateTaskStatus(Long taskId, Status status);
+    void updateTaskStatus(Long taskId, StatusEnum statusEnum);
 
 }

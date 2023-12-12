@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.em.taskmanagersystem.common.StatusEnum;
 import ru.em.taskmanagersystem.model.Comment;
-import ru.em.taskmanagersystem.model.Status;
 import ru.em.taskmanagersystem.model.Task;
 import ru.em.taskmanagersystem.service.TaskService.TaskService;
 
@@ -113,8 +113,8 @@ public class TaskRestController {
             description = "Функционал пока не реализован для фронтенда приложения"
     )
     @PatchMapping("/updateTaskStatus/{id}")
-    public ResponseEntity<Void> updateTaskStatus(@PathVariable @Parameter(description = "ID задачи") Long id, @RequestBody Status status) {
-        taskService.updateTaskStatus(id, status);
+    public ResponseEntity<Void> updateTaskStatus(@PathVariable @Parameter(description = "ID задачи") Long id, @RequestBody StatusEnum statusEnum) {
+        taskService.updateTaskStatus(id, statusEnum);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

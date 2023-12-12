@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+import ru.em.taskmanagersystem.common.PriorityEnum;
+import ru.em.taskmanagersystem.common.StatusEnum;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -29,16 +31,14 @@ public class Task {
 
     @Column(name = "description", nullable = false)
     private String description;
-    @OneToOne
-    @JoinTable(name = "tasks_statuses",
-            joinColumns = @JoinColumn(name = "task_id"),
-            inverseJoinColumns = @JoinColumn(name = "status_id"))
-    private Status statusEnum;
-    @OneToOne
-    @JoinTable(name = "tasks_priorities",
-            joinColumns = @JoinColumn(name = "task_id"),
-            inverseJoinColumns = @JoinColumn(name = "priority_id"))
-    private Priority priorityEnum;
+
+    @Column(name = "status", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private StatusEnum statusEnum;
+
+    @Column(name = "priority", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private PriorityEnum priorityEnum;
 
     @ManyToOne
     @JoinTable(name = "tasks_authors",

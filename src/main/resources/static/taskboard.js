@@ -24,8 +24,8 @@ async function drawTable() {
             <td>${id}</td>
             <td>${header}</td>
             <td>${description}</td>
-            <td>${statusEnum.value}</td>
-            <td>${priorityEnum.value}</td>
+            <td>${statusEnum}</td>
+            <td>${priorityEnum}</td>
             <td>${author.name} ${author.surname}</td>
             <td>${employee.name} ${employee.surname}</td>
             <td><button type="button" class="btn btn-warning" onclick="location.href='/task?id=${id}'">Открыть</button></td>
@@ -220,19 +220,13 @@ function collectTaskData() {
     // Для statusEnum
     const selectedStatus = statusEnumField.find(':selected').first();
     if (selectedStatus.length > 0) {
-        task.statusEnum = {
-            id: parseInt(selectedStatus.val()),
-            value: selectedStatus.text(),
-        };
+        task.statusEnum = selectedStatus.text();
     }
 
 // Для priorityEnum
     const selectedPriority = priorityEnumField.find(':selected').first();
     if (selectedPriority.length > 0) {
-        task.priorityEnum = {
-            id: parseInt(selectedPriority.val()),
-            value: selectedPriority.text(),
-        };
+        task.priorityEnum = selectedPriority.text();
     }
 
 // Для employee

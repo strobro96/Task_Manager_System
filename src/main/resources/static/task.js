@@ -10,14 +10,15 @@ async function drawTable(taskId) {
         method: 'GET',
         headers: {'Content-Type': 'application/json'}
     });
+
     const {id, header, description, statusEnum, priorityEnum, author, employee, commentList} = await response.json();
 
     $('#task-tbody').append(`<tr>
         <td>${id}</td>
         <td>${header}</td>
         <td>${description}</td>
-        <td>${statusEnum.value}</td>
-        <td>${priorityEnum.value}</td>
+        <td>${statusEnum}</td>
+        <td>${priorityEnum}</td>
         <td>${author.name} ${author.surname}</td>
         <td>${employee.name} ${employee.surname}</td>
       </tr>`);

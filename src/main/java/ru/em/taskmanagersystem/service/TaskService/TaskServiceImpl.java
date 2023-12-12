@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.em.taskmanagersystem.common.StatusEnum;
 import ru.em.taskmanagersystem.model.Comment;
-import ru.em.taskmanagersystem.model.Status;
 import ru.em.taskmanagersystem.model.Task;
 import ru.em.taskmanagersystem.model.User;
 import ru.em.taskmanagersystem.repository.CommentRepo;
@@ -113,12 +113,12 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void updateTaskStatus(Long taskId, Status status) {
+    public void updateTaskStatus(Long taskId, StatusEnum statusEnum) {
         Task task = taskRepo.findById(taskId)
                 .orElseThrow(() -> new EntityNotFoundException("Не найдена задача с id " + taskId));
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (user.getId() == (task.getEmployee().getId())) {
-            task.setStatusEnum(status);
+            task.setStatusEnum(statusEnum);
             taskRepo.save(task);
         } else {
             log.log(Level.WARN, "Вы не являетесь исполнителем задачи!");
