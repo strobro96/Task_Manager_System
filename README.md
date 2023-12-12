@@ -14,7 +14,8 @@
 
 Пакеты: 
 
-- config - Конфигурационные файлы для Spring Security
+- common - вспомогательные классы для model
+- config - конфигурационные файлы для Spring Security
 - controller - REST-контроллеры
 - model - классы сущностей
 - repository - dao-классы
