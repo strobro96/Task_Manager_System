@@ -71,7 +71,7 @@ async function openModalHandler(actionId, userId = null) {
             .text('Добавить пользователя')
             .off('click')
             .click(() => submitBtnHandler(addUser));
-        modalLabel.text('Add new user');
+        modalLabel.text('Добавить нового пользователя');
 
         return;
     }
@@ -93,7 +93,7 @@ async function openModalHandler(actionId, userId = null) {
             submitBtn
                 .removeClass()
                 .addClass('btn btn-danger')
-                .text('Delete')
+                .text('Удалить')
                 .off('click')
                 .click(() => submitBtnHandler(deleteUser));
             nameField.prop('disabled', true);
@@ -109,7 +109,7 @@ async function openModalHandler(actionId, userId = null) {
             submitBtn
                 .removeClass()
                 .addClass('btn btn-info')
-                .text('Edit')
+                .text('Редактировать')
                 .off('click')
                 .click(() => submitBtnHandler(editUser));
             break;
